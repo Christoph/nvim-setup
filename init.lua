@@ -108,7 +108,11 @@ require('lazy').setup({
       'rafamadriz/friendly-snippets',
     },
   },
+  { "machakann/vim-sandwich", lazy=false},
+  { "numToStr/Comment.nvim", lazy=false},
+  { "tpope/vim-fugitive"},
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -211,7 +215,7 @@ require('lazy').setup({
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    build = ':TSUpdate',
+    -- build = ':TSUpdate',
   },
   {
     'phaazon/hop.nvim',
@@ -653,7 +657,11 @@ require("catppuccin").setup({
     },
 })
 
-vim.cmd[[colorscheme catppuccin-mocha]]
+require('Comment').setup()
+-- vim.cmd[[colorscheme catppuccin-mocha]]
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
+
 vim.cmd('hi HopNextKey guifg=#c2c52d')
 vim.cmd('hi HopNextKey1 guifg=#c2c52d')
 vim.cmd('hi HopNextKey2 guifg=#c2c52d')

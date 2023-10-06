@@ -1,30 +1,30 @@
 # nvim-setup
 based on kickstart.nvim
 
+## Navigation
+<C>w  :  Show movements
+
+
+## Search
+- / + text
+- / + <C>+r paste from register
+
 # Plugins (<L> => Leader)
 ## phaazon/hop.nvim
-<L>j  :  Search for pattern
+- <L>j  :  Search for pattern
 
-## folke/todo-comments.nvim
+## folke/trouble.nvim
+- <leader>xx  :  Toggle window
+- <leader>xw  :  Open workspace diagnostics
+- <leader>xd  :  Open document diagnostics
+- <leader>xq  :  Open quick fixes
+- gR  :  Open references
 
-
-
-
-vim.opt.completeopt = "noinsert,menuone,noselect"
-vim.opt.cursorline = true
-vim.opt.expandtab = true
-vim.opt.foldexpr = "nvim_treesitter#foldepr()"
-vim.opt.foldmethod = "manual"
-vim.opt.hidden = true
-vim.opt.inccommand = "split"
--- vim.opt.relativenumber = true
-vim.opt.shiftwidth = 2
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.smarttab = true
-vim.opt.swapfile = false
-vim.opt.tabstop = 2
-vim.opt.title = true
-vim.opt.ttimeoutlen = 0
-vim.opt.wildmenu = true
-vim.opt.wrap = true
+## telescope
+- <L>sf  :  Search file
+- <L><L>  :  Search buffers
+- <Ctrl>+x  :  Open in hsplit
+- <Ctrl>+v  :  Open in vsplit
+- <Ctrl>+t  :  Open in tab
+- <Ctrl>n/p  : Move up/down
+- <Ctrl>t  : Open in quickfix window

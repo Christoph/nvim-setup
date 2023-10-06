@@ -35,6 +35,22 @@ based on kickstart.nvim
 - <Ctrl>t  : Open in quickfix window
 - <L>?  :  Find recently opened files
 
+## nvim-tree/nvim-tree.lua
+- <L>tt  :  toggle file explorer
+- <L>tf  :  open file exporer with current file selected
+Inside the explorer
+- o : open
+- q: close
+- Y  : copy relative path
+- P  : Parent directory
+- W  : collapse
+- c  : copy
+- d  : delete
+- p  : paste
+- <ctrl>T : open in tab
+- <ctrl>V : open in vertical split
+- <ctrl>X : open in horizontal split
+
 ## LSP
 - <L>rn  :  rename
 - <L>ca  :   code action
@@ -45,8 +61,6 @@ based on kickstart.nvim
 - <L>ds  : document symbols
 - K   :   hover
 - <ctrl>k   :   help  
-
-## nvim-tree/nvim-tree.lua
 
 ## nvim-treesitter
 <Ctrl><L>  :   Select node (select more with each press)

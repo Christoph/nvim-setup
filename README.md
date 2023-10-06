@@ -6,6 +6,8 @@ based on kickstart.nvim
 - Tab  :  Next tab
 - |Shift||Tab| :  Previous tab
 - |Ctrl|6 : Jump between last two files
+- |Shift|8 on word : jump to next similar word
+- |Ctrl|o : jump back to the last word
 
 ## Search
 - / + text

@@ -14,7 +14,7 @@ based on kickstart.nvim
 - [d  : Next diagnostic element
 - ]d  : Previous diagnostic element
 
-# Plugins (*Leader* => Leader)
+# Plugins ((Leader) => Leader)
 ## phaazon/hop.nvim
 - <L>j  :  Search for pattern
 

@@ -2,8 +2,9 @@
 based on kickstart.nvim
 
 ## Navigation
-<C>w  :  Show movements
-
+- <C>w  :  Show movements
+- gt  :  Next tab
+- gT  :  Previous tab
 
 ## Search
 - / + text
@@ -28,3 +29,20 @@ based on kickstart.nvim
 - <Ctrl>+t  :  Open in tab
 - <Ctrl>n/p  : Move up/down
 - <Ctrl>t  : Open in quickfix window
+
+## numToStr/Comment.nvim
+- gcc  :   single line comment
+- visual mode + gc  :    comment selected lines
+
+## machakann/vim-sandwich
+(inner) is without brackets
+(outer) with brackets
+- saiw{element}  :  Surround (inner) (w)ord by element
+- saib{element}  :  Surround (inner) (b)lock by element
+- sais{element}  :  Surround (inner) (s)ection by element
+- saab{element}  :  Surround (outer) (b)lock by element
+- saas{element}  :  Surround (outer) (s)ection by element
+- sdb   : Remove first bracket in block
+- sd{element}  : Remove first element brackets
+- srb{element}  : Replace first bracket in block with element
+- sr{bracket}{element}  : Replace bracket with element

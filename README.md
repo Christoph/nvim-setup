@@ -2,42 +2,42 @@
 based on kickstart.nvim
 
 ## Navigation
-- <ctrl>w  :  Show movements
+- |Ctrl|w  :  Show movements
 - Tab  :  Next tab
-- <Shift><Tab> :  Previous tab
+- |Shift||Tab| :  Previous tab
 
 ## Search
 - / + text
-- / + <C>+r paste from register
+- / + |Ctrl|+r paste from register
 
 ## Diagnostics
 - [d  : Next diagnostic element
 - ]d  : Previous diagnostic element
 
-# Plugins (|Leader| => Leader)
+# Plugins (|L| => Leader)
 ## phaazon/hop.nvim
-- <L>j  :  Search for pattern
+- |L|j  :  Search for pattern
 
 ## folke/trouble.nvim
-- <leader>xx  :  Toggle window
-- <leader>xw  :  Open workspace diagnostics
-- <leader>xd  :  Open document diagnostics
-- <leader>xq  :  Open quick fixes
+- |L|xx  :  Toggle window
+- |L|xw  :  Open workspace diagnostics
+- |L|xd  :  Open document diagnostics
+- |L|xq  :  Open quick fixes
 - gR  :  Open references
 
 ## telescope
-- <L>sf  :  Search file
-- <L><L>  :  Search buffers
-- <Ctrl>+x  :  Open in hsplit
-- <Ctrl>+v  :  Open in vsplit
-- <Ctrl>+t  :  Open in tab
-- <Ctrl>n/p  : Move up/down
-- <Ctrl>t  : Open in quickfix window
-- <L>?  :  Find recently opened files
+- |L|sf  :  Search file
+- |L||L|  :  Search buffers
+- |Ctrl|+x  :  Open in hsplit
+- |Ctrl|+v  :  Open in vsplit
+- |Ctrl|+t  :  Open in tab
+- |Ctrl|n/p  : Move up/down
+- |Ctrl|t  : Open in quickfix window
+- |L|?  :  Find recently opened files
 
 ## nvim-tree/nvim-tree.lua
-- <L>tt  :  toggle file explorer
-- <L>tf  :  open file exporer with current file selected
+- |L|tt  :  toggle file explorer
+- |L|tf  :  open file exporer with current file selected
 Inside the explorer
 - o : open
 - q: close
@@ -47,24 +47,24 @@ Inside the explorer
 - c  : copy
 - d  : delete
 - p  : paste
-- <ctrl>T : open in tab
-- <ctrl>V : open in vertical split
-- <ctrl>X : open in horizontal split
+- |Ctrl|T : open in tab
+- |Ctrl|V : open in vertical split
+- |Ctrl|X : open in horizontal split
 
 ## LSP
-- <L>rn  :  rename
-- <L>ca  :   code action
+- |L|rn  :  rename
+- |L|ca  :   code action
 - gd  :   goto definition
 - gr  :   goto references (gR for list)
 - gI  :   goto implementations
-- <L>D :  type definitions
-- <L>ds  : document symbols
+- |L|D :  type definitions
+- |L|ds  : document symbols
 - K   :   hover
-- <ctrl>k   :   help  
+- |Ctrl|k   :   help  
 
 ## nvim-treesitter
-<Ctrl><L>  :   Select node (select more with each press)
-<option><L>  :   Deelect node (deselect more with each press)
+|Ctrl||L|  :   Select node (select more with each press)
+|Option||L|  :   Deelect node (deselect more with each press)
 
 ## numToStr/Comment.nvim
 - gcc  :   single line comment

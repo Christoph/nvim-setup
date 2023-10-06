@@ -93,6 +93,7 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
+  'simrat39/rust-tools.nvim',
     {
    "folke/trouble.nvim",
    dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -117,6 +118,9 @@ require('lazy').setup({
       'rafamadriz/friendly-snippets',
     },
   },
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-nvim-lsp-signature-help',
   { "machakann/vim-sandwich", lazy=false},
   { "numToStr/Comment.nvim", lazy=false},
   { "tpope/vim-fugitive"},
@@ -186,7 +190,7 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
+  'puremourning/vimspector',
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
@@ -207,6 +211,7 @@ require('lazy').setup({
       },
     },
   },
+  'voldikss/vim-floaterm',
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
@@ -393,19 +398,30 @@ vim.keymap.set('n', '<leader>j', '<cmd>HopPattern<CR>', { desc = 'Search for pat
 vim.keymap.set('n', '<Tab>', 'gt')
 vim.keymap.set('n', '<S-Tab>', 'gT')
 
+
+-- FloaTerm configuration
+vim.keymap.set('n', "<leader>ft", ":FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 fish <CR> ")
+vim.keymap.set('n', "t", ":FloatermToggle myfloat<CR>")
+vim.keymap.set('t', "<Esc>", "<C-\\><C-n>:q<CR>")
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'python', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
+    ensure_installed = { 'c', 'python', 'cpp', 'go', 'lua', 'python', 'rust', 'toml', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
   
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = false,
+    auto_install = true,
   
     highlight = { enable = true },
     indent = { enable = true },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -616,8 +632,28 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp', keyword_length = 2 },
     { name = 'luasnip' },
+    { name = 'path' },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'buffer', keyword_length = 2 }, 
+  },
+  window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+  },
+  formatting = {
+      fields = {'menu', 'abbr', 'kind'},
+      format = function(entry, item)
+          local menu_icon ={
+              nvim_lsp = 'λ',
+              vsnip = '⋗',
+              buffer = 'Ω',
+              path = '🖫',
+          }
+          item.menu = menu_icon[entry.source.name]
+          return item
+      end,
   },
 }
 
@@ -704,10 +740,38 @@ require("catppuccin").setup({
     },
 })
 
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
+
 require('Comment').setup()
 -- vim.cmd[[colorscheme catppuccin-mocha]]
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
+
+-- Vimspector options
+vim.cmd([[
+let g:vimspector_sidebar_width = 85
+let g:vimspector_bottombar_height = 15
+let g:vimspector_terminal_maxwidth = 70
+]])
+vim.cmd([[
+nmap <F9> <cmd>call vimspector#Launch()<cr>
+nmap <F5> <cmd>call vimspector#StepOver()<cr>
+nmap <F8> <cmd>call vimspector#Reset()<cr>
+nmap <F11> <cmd>call vimspector#StepOver()<cr>")
+nmap <F12> <cmd>call vimspector#StepOut()<cr>")
+nmap <F10> <cmd>call vimspector#StepInto()<cr>")
+]])
+--
 
 vim.cmd('hi HopNextKey guifg=#c2c52d')
 vim.cmd('hi HopNextKey1 guifg=#c2c52d')

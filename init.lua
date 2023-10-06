@@ -75,7 +75,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   'mg979/vim-visual-multi',
 
-  -- NOTE: This is where your plugins related to LSP can be installed.
+ -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
@@ -92,6 +92,15 @@ require('lazy').setup({
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+  },
+    {
+   "folke/trouble.nvim",
+   dependencies = { "nvim-tree/nvim-web-devicons" },
+   opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+   },
   },
   {
     -- Autocompletion
@@ -159,7 +168,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'tokyonight',
+        theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
       },
@@ -221,6 +230,11 @@ require('lazy').setup({
     'phaazon/hop.nvim',
     branch = 'v2', -- optional but strongly recommended
   },
+  {
+      'windwp/nvim-autopairs',
+      event = "InsertEnter",
+      opts = {} -- this is equalent to setup({}) function
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -240,9 +254,27 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
+vim.opt.completeopt = "noinsert,menuone,noselect"
+vim.opt.cursorline = true
+vim.opt.expandtab = true
+vim.opt.foldexpr = "nvim_treesitter#foldepr()"
+vim.opt.foldmethod = "manual"
+vim.opt.hidden = true
+vim.opt.inccommand = "split"
+-- vim.opt.relativenumber = true
+vim.opt.shiftwidth = 2
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.smarttab = true
+vim.opt.swapfile = false
+vim.opt.tabstop = 2
+vim.opt.title = true
+vim.opt.ttimeoutlen = 0
+vim.opt.wildmenu = true
+vim.opt.wrap = true
 
 -- Set highlight on search
-vim.o.hlsearch = true
+vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
@@ -305,14 +337,24 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- Trouble
+local trouble = require("trouble.providers.telescope")
+vim.keymap.set("n", "<leader>xx", function() require("trouble").open() end, { desc = 'Toggle window' })
+vim.keymap.set("n", "<leader>xw", function() require("trouble").open("workspace_diagnostics") end, { desc = 'Open Workspace Diagnositics' })
+vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_diagnostics") end, { desc = 'Open Document Diagnositics' })
+vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end, { desc = 'Open Quick Fixes' })
+vim.keymap.set("n", "gR", function() require("trouble").open("lsp_references") end, { desc = 'Open References' })
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
     mappings = {
+      n = { ["<c-t>"] = trouble.open_with_trouble },
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ["<c-t>"] = trouble.open_with_trouble 
       },
     },
   },
@@ -342,9 +384,14 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 
 -- tree view
 vim.keymap.set('n', '<leader>tt', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle Directory' })
+vim.keymap.set('n', '<leader>tf', '<cmd>NvimTreeFindFile<CR>', { desc = 'Open current file in Directory' })
 
 -- hop
 vim.keymap.set('n', '<leader>j', '<cmd>HopPattern<CR>', { desc = 'Search for pattern' })
+
+-- Remaps
+vim.keymap.set('n', '<Tab>', 'gt')
+vim.keymap.set('n', '<S-Tab>', 'gT')
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`

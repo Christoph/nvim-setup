@@ -5,6 +5,7 @@ based on kickstart.nvim
 - |Ctrl|w  :  Show movements
 - Tab  :  Next tab
 - |Shift||Tab| :  Previous tab
+- |Ctrl|6 : Jump between last two files
 
 ## Search
 - / + text

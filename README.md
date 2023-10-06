@@ -60,7 +60,11 @@ Inside the explorer
 - |L|D :  type definitions
 - |L|ds  : document symbols
 - K   :   hover
-- |Ctrl|k   :   help  
+- |Ctrl|k   :   help
+
+## Rust
+- |Crtl||L|  :   Hover actions
+- |L|a  :  code action group
 
 ## nvim-treesitter
 |Ctrl||L|  :   Select node (select more with each press)

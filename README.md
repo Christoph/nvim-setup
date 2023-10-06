@@ -2,9 +2,9 @@
 based on kickstart.nvim
 
 ## Navigation
-- <C>w  :  Show movements
-- gt  :  Next tab
-- gT  :  Previous tab
+- <ctrl>w  :  Show movements
+- Tab  :  Next tab
+- <Shift><Tab> :  Previous tab
 
 ## Search
 - / + text
@@ -14,7 +14,7 @@ based on kickstart.nvim
 - [d  : Next diagnostic element
 - ]d  : Previous diagnostic element
 
-# Plugins (<L> => Leader)
+# Plugins (<Leader> => Leader)
 ## phaazon/hop.nvim
 - <L>j  :  Search for pattern
 

@@ -15,6 +15,10 @@ based on kickstart.nvim
 - ]d  : Previous diagnostic element
 
 # Plugins (|L| => Leader)
+## voldikss/vim-floaterm
+- |L|ft : new float terminal
+- t : toggle float terminal
+
 ## phaazon/hop.nvim
 - |L|j  :  Search for pattern
 

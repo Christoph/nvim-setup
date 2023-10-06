@@ -10,6 +10,10 @@ based on kickstart.nvim
 - / + text
 - / + <C>+r paste from register
 
+## Diagnostics
+- [d  : Next diagnostic element
+- ]d  : Previous diagnostic element
+
 # Plugins (<L> => Leader)
 ## phaazon/hop.nvim
 - <L>j  :  Search for pattern
@@ -29,6 +33,24 @@ based on kickstart.nvim
 - <Ctrl>+t  :  Open in tab
 - <Ctrl>n/p  : Move up/down
 - <Ctrl>t  : Open in quickfix window
+- <L>?  :  Find recently opened files
+
+## LSP
+- <L>rn  :  rename
+- <L>ca  :   code action
+- gd  :   goto definition
+- gr  :   goto references (gR for list)
+- gI  :   goto implementations
+- <L>D :  type definitions
+- <L>ds  : document symbols
+- K   :   hover
+- <ctrl>k   :   help  
+
+## nvim-tree/nvim-tree.lua
+
+## nvim-treesitter
+<Ctrl><L>  :   Select node (select more with each press)
+<option><L>  :   Deelect node (deselect more with each press)
 
 ## numToStr/Comment.nvim
 - gcc  :   single line comment

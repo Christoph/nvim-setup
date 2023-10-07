@@ -17,10 +17,11 @@ based on kickstart.nvim
 - <kbd>Ctrl</kbd><kbd>6</kbd> : Jump between last two files
 - <kbd>Shift</kbd><kbd>8</kbd> on word : jump to next similar word
 - <kbd>Ctrl</kbd><kbd>o</kbd> : jump back to the last word
-- <kbd>Ctrl</kbd><kbd>l</kbd> : next buffer
-- <kbd>Ctrl</kbd><kbd>h</kbd> : previous buffer
+- <kbd>Ctrl</kbd><kbd>.</kbd> : next buffer
+- <kbd>Ctrl</kbd><kbd>,</kbd> : previous buffer
 - <kbd>H</kbd> : start of line
 - <kbd>L</kbd> : end of line
+- visual mode: <kbd>J</kbd>/<kbd>K</kbd> to move selection
 
 ## Search
 - :/ + text
@@ -88,8 +89,8 @@ Inside the explorer
 - <kbd>Space</kbd><kbd>a</kbd>  :  code action group
 
 ## nvim-treesitter
-<kbd>CR</kbd>  :   Select node (select more with each press)
-<kbd>BS</kbd>  :   Deelect node (deselect more with each press)
+- <kbd>CR</kbd>  :   Select node (select more with each press)
+- <kbd>BS</kbd>  :   Deselect node (deselect more with each press)
 
 ## numToStr/Comment.nvim
 - <kbd>g</kbd><kbd>c</kbd><kbd>c</kbd>  :   single line comment

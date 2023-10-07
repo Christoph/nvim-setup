@@ -3,16 +3,16 @@ based on kickstart.nvim
 
 ##
 - ; : acts as :
-- <kbd>j</kbd><kbd>k<kbd>: Esc
+- <kbd>j</kbd><kbd>k</kbd>: Esc
 
 ## Navigation
-- |Ctrl|h  :  move to left split
-- |Ctrl|j  :  move to down split
-- |Ctrl|k  :  move to up split
-- |Ctrl|l  :  move to right split
-- |Ctrl|Arrows : Resive split
-- Tab  :  Next tab
-- |Shift||Tab| :  Previous tab
+- <kbd>Ctrl</kbd><kbd>h</kbd>  :  move to left split
+- <kbd>Ctrl</kbd><kbd>j</kbd>  :  move to down split
+- <kbd>Ctrl</kbd><kbd>k<kbd>  :  move to up split
+- <kbd>Ctrl</kbd><kbd>l</kbd>  :  move to right split
+- <kbd>Ctrl</kbd><kbd>Arrows</kbd> : Resive split
+- <kbd>Tab</kbd>  :  Next tab
+- <kbd>Shift</kbd><kbd>Tab<kbd> :  Previous tab
 - |Ctrl|6 : Jump between last two files
 - |Shift|8 on word : jump to next similar word
 - |Ctrl|o : jump back to the last word

@@ -43,6 +43,9 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -336,8 +339,8 @@ vim.keymap.set('n', '<C-d>', "<C-d>zz", {silent = true})
 vim.keymap.set('n', '<C-u>', "<C-u>zz", {silent = true})
 
 -- Move between buffers
-vim.keymap.set('n', '<A-l>', ":bnext<CR>", {silent = true})
-vim.keymap.set('n', '<A-h>', ":bprevious<CR>", {silent = true})
+vim.keymap.set('n', '<C-.>', ":bnext<CR>", {silent = true})
+vim.keymap.set('n', '<C-,>', ":bprevious<CR>", {silent = true})
 
 -- ; for :
 vim.keymap.set('n', ';', ":", {silent = true})
@@ -367,8 +370,8 @@ vim.keymap.set('n', '<C-Left>', ":vertical resize -2<CR>", { silent = true})
 vim.keymap.set('n', '<C-Right>', ":vertical resize +2<CR>", { silent = true})
 
 -- Move text
-vim.keymap.set('x', 'J', ":m '>+1<CR>gv-gv'", {silent = true})
-vim.keymap.set('x', 'K', ":m '<-2<CR>gv-gv'", {silent = true})
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { silent = true})
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", {silent = true})
 
 -- Additional exit from insert mode
 vim.keymap.set('i', 'jk', "<Esc>", {silent = true})
@@ -823,5 +826,6 @@ nmap <F10> <cmd>call vimspector#StepInto()<cr>")
 vim.cmd('hi HopNextKey guifg=#c2c52d')
 vim.cmd('hi HopNextKey1 guifg=#c2c52d')
 vim.cmd('hi HopNextKey2 guifg=#c2c52d')
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

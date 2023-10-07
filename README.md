@@ -8,31 +8,30 @@ based on kickstart.nvim
 ## Navigation
 - <kbd>Ctrl</kbd><kbd>h</kbd>  :  move to left split
 - <kbd>Ctrl</kbd><kbd>j</kbd>  :  move to down split
-- <kbd>Ctrl</kbd><kbd>k<kbd>  :  move to up split
+- <kbd>Ctrl</kbd><kbd>k</kbd>  :  move to up split
 - <kbd>Ctrl</kbd><kbd>l</kbd>  :  move to right split
 - <kbd>Ctrl</kbd><kbd>Arrows</kbd> : Resive split
 - <kbd>Tab</kbd>  :  Next tab
-- <kbd>Shift</kbd><kbd>Tab<kbd> :  Previous tab
-- |Ctrl|6 : Jump between last two files
-- |Shift|8 on word : jump to next similar word
-- |Ctrl|o : jump back to the last word
-- |Ctrl|l : next buffer
-- |Ctrl|h : previous buffer
-- H : start of line
-- L : end of line
+- <kbd>Shift</kbd><kbd>Tab</kbd> :  Previous tab
+- <kbd>Ctrl</kbd><kbd>6</kbd> : Jump between last two files
+- <kbd>Shift</kbd><kbd>8</kbd> on word : jump to next similar word
+- <kbd>Ctrl</kbd><kbd>o</kbd> : jump back to the last word
+- <kbd>Ctrl</kbd><kbd>l</kbd> : next buffer
+- <kbd>Ctrl</kbd><kbd>h</kbd> : previous buffer
+- <kbd>H</kbd> : start of line
+- <kbd>L</kbd> : end of line
 
 ## Search
-- / + text
-- / + |Ctrl|+r paste from register
+- :/ + text
+- :/ + <kbd>Ctrl</kbd><kbd>r</kbd> paste from register
 
 ## Diagnostics
-- [d  : Next diagnostic element
-- ]d  : Previous diagnostic element
+- <kbd>[</kbd><kbd>d</kbd>  : Next diagnostic element
+- <kbd>]</kbd><kbd>d</kbd>  : Previous diagnostic element
 
-# Plugins (|L| => Leader)
 ## voldikss/vim-floaterm
-- |L|ft : new float terminal
-- t : toggle float terminal
+- <kbd>Space</kbd><kbd>f</kbd><kbd>t</kbd> : new float terminal
+- <kbd>t</kbd> : toggle float terminal
 
 ## phaazon/hop.nvim
 - |L|j  :  Search for pattern

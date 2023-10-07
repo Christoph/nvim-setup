@@ -1,13 +1,25 @@
 # nvim-setup
 based on kickstart.nvim
 
+##
+- ; : acts as :
+- jk : |Esc|
+
 ## Navigation
-- |Ctrl|w  :  Show movements
+- |Ctrl|h  :  move to left split
+- |Ctrl|j  :  move to down split
+- |Ctrl|k  :  move to up split
+- |Ctrl|l  :  move to right split
+- |Ctrl|Arrows : Resive split
 - Tab  :  Next tab
 - |Shift||Tab| :  Previous tab
 - |Ctrl|6 : Jump between last two files
 - |Shift|8 on word : jump to next similar word
 - |Ctrl|o : jump back to the last word
+- |Ctrl|l : next buffer
+- |Ctrl|h : previous buffer
+- H : start of line
+- L : end of line
 
 ## Search
 - / + text
@@ -74,8 +86,8 @@ Inside the explorer
 - |L|a  :  code action group
 
 ## nvim-treesitter
-|Ctrl||L|  :   Select node (select more with each press)
-|Option||L|  :   Deelect node (deselect more with each press)
+|CR|  :   Select node (select more with each press)
+|BS|  :   Deelect node (deselect more with each press)
 
 ## numToStr/Comment.nvim
 - gcc  :   single line comment

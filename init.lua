@@ -341,6 +341,7 @@ vim.keymap.set('n', '<A-h>', ":bprevious<CR>", {silent = true})
 
 -- ; for :
 vim.keymap.set('n', ';', ":", {silent = true})
+vim.keymap.set('n', 'n', "nzz", {silent = true})
 
 -- start beginning
 vim.keymap.set('n', 'H', "^", {silent = true})

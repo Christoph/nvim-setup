@@ -3,7 +3,7 @@ based on kickstart.nvim
 
 ##
 - ; : acts as :
-- <kbd>j</kbd>k: Esc
+- <kbd>j</kbd><kbd>k<kbd>: Esc
 
 ## Navigation
 - |Ctrl|h  :  move to left split

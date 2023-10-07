@@ -3,7 +3,7 @@ based on kickstart.nvim
 
 ##
 - ; : acts as :
-- jk : |Esc|
+- <kbd>jk </kbd>: Esc
 
 ## Navigation
 - |Ctrl|h  :  move to left split
@@ -61,11 +61,13 @@ Inside the explorer
 - o : open
 - q: close
 - Y  : copy relative path
+- gy : copy absolute path
 - P  : Parent directory
 - W  : collapse
 - c  : copy
 - d  : delete
 - p  : paste
+- |Ctrl|] : CD
 - |Ctrl|T : open in tab
 - |Ctrl|V : open in vertical split
 - |Ctrl|X : open in horizontal split

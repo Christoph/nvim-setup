@@ -73,37 +73,37 @@ Inside the explorer
 - <kbd>Ctrl</kbd><kbd>X</kbd> : open in horizontal split
 
 ## LSP
-- <kbd>Space</kbd>rn  :  rename
-- <kbd>Space</kbd>ca  :   code action
-- gd  :   goto definition
-- gr  :   goto references (gR for list)
-- gI  :   goto implementations
-- <kbd>Space</kbd>D :  type definitions
-- <kbd>Space</kbd>ds  : document symbols
-- K   :   hover
-- <kbd>Ctrl</kbd>k   :   help
+- <kbd>Space</kbd><kbd>r</kbd><kbd>n</kbd>  :  rename
+- <kbd>Space</kbd><kbd>c</kbd><kbd>a</kbd>  :   code action
+- <kbd>g</kbd><kbd>d</kbd>  :   goto definition
+- <kbd>g</kbd><kbd>r</kbd> :   goto references (gR for list)
+- <kbd>g</kbd><kbd>I</kbd>  :   goto implementations
+- <kbd>Space</kbd><kbd>D</kbd> :  type definitions
+- <kbd>Space</kbd><kbd>d</kbd><kbd>s</kbd>  : document symbols
+- <kbd>K</kbd>   :   hover
+- <kbd>Ctrl</kbd><kbd>k</kbd>   :   help
 
 ## Rust
 - <kbd>Ctrl</kbd><kbd>Space</kbd>  :   Hover actions
-- <kbd>Space</kbd>a  :  code action group
+- <kbd>Space</kbd><kbd>a</kbd>  :  code action group
 
 ## nvim-treesitter
-|CR|  :   Select node (select more with each press)
-|BS|  :   Deelect node (deselect more with each press)
+<kbd>CR</kbd>  :   Select node (select more with each press)
+<kbd>BS</kbd>  :   Deelect node (deselect more with each press)
 
 ## numToStr/Comment.nvim
-- gcc  :   single line comment
-- visual mode + gc  :    comment selected lines
+- <kbd>g</kbd><kbd>c</kbd><kbd>c</kbd>  :   single line comment
+- visual mode + <kbd>g</kbd><kbd>c</kbd>  :    comment selected lines
 
 ## machakann/vim-sandwich
 (inner) is without brackets
 (outer) with brackets
-- saiw{element}  :  Surround (inner) (w)ord by element
-- saib{element}  :  Surround (inner) (b)lock by element
-- sais{element}  :  Surround (inner) (s)ection by element
-- saab{element}  :  Surround (outer) (b)lock by element
-- saas{element}  :  Surround (outer) (s)ection by element
-- sdb   : Remove first bracket in block
-- sd{element}  : Remove first element brackets
-- srb{element}  : Replace first bracket in block with element
-- sr{bracket}{element}  : Replace bracket with element
+- <kbd>s</kbd><kbd>a</kbd><kbd>i</kbd><kbd>w</kbd>{element}  :  Surround (inner) (w)ord by element
+- <kbd>s</kbd><kbd>a</kbd><kbd>i</kbd><kbd>b</kbd>{element}  :  Surround (inner) (b)lock by element
+- <kbd>s</kbd><kbd>a</kbd><kbd>i</kbd><kbd>s</kbd>{element}  :  Surround (inner) (s)ection by element
+- <kbd>s</kbd><kbd>a</kbd><kbd>a</kbd><kbd>b</kbd>{element}  :  Surround (outer) (b)lock by element
+- <kbd>s</kbd><kbd>a</kbd><kbd>a</kbd><kbd>s</kbd>{element}  :  Surround (outer) (s)ection by element
+- <kbd>s</kbd><kbd>d</kbd><kbd>b</kbd>   : Remove first bracket in block
+- <kbd>s</kbd><kbd>d</kbd>{element}  : Remove first element brackets
+- <kbd>s</kbd><kbd>r</kbd><kbd>b</kbd>{element}  : Replace first bracket in block with element
+- <kbd>s</kbd><kbd>r</kbd>{bracket}{element}  : Replace bracket with element

@@ -2,8 +2,9 @@
 based on kickstart.nvim
 
 ##
-- ; : acts as :
+- <kbd>;</kbd> and <kbd>:</kbd> acts as :
 - <kbd>j</kbd><kbd>k</kbd>: Esc
+- <kbd>Space</kbd> : Leader
 
 ## Navigation
 - <kbd>Ctrl</kbd><kbd>h</kbd>  :  move to left split
@@ -34,57 +35,57 @@ based on kickstart.nvim
 - <kbd>t</kbd> : toggle float terminal
 
 ## phaazon/hop.nvim
-- |L|j  :  Search for pattern
+- <kbd>Space</kbd><kbd>j</kbd>  :  Search for pattern
 
 ## folke/trouble.nvim
-- |L|xx  :  Toggle window
-- |L|xw  :  Open workspace diagnostics
-- |L|xd  :  Open document diagnostics
-- |L|xq  :  Open quick fixes
-- gR  :  Open references
+- <kbd>Space</kbd><kbd>x</kbd><kbd>x</kbd>  :  Toggle window
+- <kbd>Space</kbd><kbd>x</kbd><kbd>w</kbd>  :  Open workspace diagnostics
+- <kbd>Space</kbd><kbd>x</kbd><kbd>d</kbd>  :  Open document diagnostics
+- <kbd>Space</kbd><kbd>x</kbd><kbd>q</kbd>  :  Open quick fixes
+- <kbd>g</kbd><kbd>R</kbd>  :  Open references
 
 ## telescope
-- |L|sf  :  Search file
-- |L||L|  :  Search buffers
-- |Ctrl|+x  :  Open in hsplit
-- |Ctrl|+v  :  Open in vsplit
-- |Ctrl|+t  :  Open in tab
-- |Ctrl|n/p  : Move up/down
-- |Ctrl|t  : Open in quickfix window
-- |L|?  :  Find recently opened files
+- <kbd>Space</kbd><kbd>s</kbd><kbd>f</kbd>  :  Search file
+- <kbd>Space</kbd><kbd>Space</kbd>  :  Search buffers
+- <kbd>Ctrl</kbd><kbd>x</kbd>  :  Open in hsplit
+- <kbd>Ctrl</kbd><kbd>v</kbd>  :  Open in vsplit
+- <kbd>Ctrl</kbd><kbd>t</kbd>  :  Open in tab
+- <kbd>Ctrl</kbd><kbd>n</kbd>/<kbd>p</kbd>  : Move up/down
+- <kbd>Ctrl</kbd><kbd>t</kbd>  : Open in quickfix window
+- <kbd>Space</kbd><kbd>?</kbd>  :  Find recently opened files
 
 ## nvim-tree/nvim-tree.lua
-- |L|tt  :  toggle file explorer
-- |L|tf  :  open file exporer with current file selected
+- <kbd>Space</kbd><kbd>t</kbd><kbd>t</kbd>  :  toggle file explorer
+- <kbd>Space</kbd><kbd>t</kbd><kbd>f</kbd>  :  open file exporer with current file selected
 Inside the explorer
-- o : open
-- q: close
-- Y  : copy relative path
-- gy : copy absolute path
-- P  : Parent directory
-- W  : collapse
-- c  : copy
-- d  : delete
-- p  : paste
-- |Ctrl|] : CD
-- |Ctrl|T : open in tab
-- |Ctrl|V : open in vertical split
-- |Ctrl|X : open in horizontal split
+- <kbd>o</kbd> : open
+- <kbd>q</kbd>: close
+- <kbd>Y</kbd>  : copy relative path
+- <kbd>g</kbd><kbd>y</kbd> : copy absolute path
+- <kbd>P</kbd>  : Parent directory
+- <kbd>W</kbd>  : collapse
+- <kbd>c</kbd>  : copy
+- <kbd>d</kbd>  : delete
+- <kbd>p</kbd>  : paste
+- <kbd>Ctrl</kbd><kbd>}</kbd> : CD
+- <kbd>Ctrl</kbd><kbd>T</kbd> : open in tab
+- <kbd>Ctrl</kbd><kbd>V</kbd> : open in vertical split
+- <kbd>Ctrl</kbd><kbd>X</kbd> : open in horizontal split
 
 ## LSP
-- |L|rn  :  rename
-- |L|ca  :   code action
+- <kbd>Space</kbd>rn  :  rename
+- <kbd>Space</kbd>ca  :   code action
 - gd  :   goto definition
 - gr  :   goto references (gR for list)
 - gI  :   goto implementations
-- |L|D :  type definitions
-- |L|ds  : document symbols
+- <kbd>Space</kbd>D :  type definitions
+- <kbd>Space</kbd>ds  : document symbols
 - K   :   hover
-- |Ctrl|k   :   help
+- <kbd>Ctrl</kbd>k   :   help
 
 ## Rust
-- |Crtl||L|  :   Hover actions
-- |L|a  :  code action group
+- <kbd>Ctrl</kbd><kbd>Space</kbd>  :   Hover actions
+- <kbd>Space</kbd>a  :  code action group
 
 ## nvim-treesitter
 |CR|  :   Select node (select more with each press)

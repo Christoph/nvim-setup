@@ -266,7 +266,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldepr()"
 vim.opt.foldmethod = "manual"
 vim.opt.hidden = true
 vim.opt.inccommand = "split"
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 vim.opt.shiftwidth = 2
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -274,7 +274,7 @@ vim.opt.smarttab = true
 vim.opt.swapfile = false
 vim.opt.tabstop = 2
 vim.opt.title = true
-vim.opt.ttimeoutlen = 0
+-- vim.opt.ttimeoutlen = 0
 vim.opt.wildmenu = true
 vim.opt.wrap = true
 
@@ -331,8 +331,51 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set('n', '<C-d>', "<C-d>zz")
-vim.keymap.set('n', '<C-u>', "<C-u>zz")
+-- Move up and down always centeres
+vim.keymap.set('n', '<C-d>', "<C-d>zz", {silent = true})
+vim.keymap.set('n', '<C-u>', "<C-u>zz", {silent = true})
+
+-- Move between buffers
+vim.keymap.set('n', '<A-l>', ":bnext<CR>", {silent = true})
+vim.keymap.set('n', '<A-h>', ":bprevious<CR>", {silent = true})
+
+-- ; for :
+vim.keymap.set('n', ';', ":", {silent = true})
+
+-- start beginning
+vim.keymap.set('n', 'H', "^", {silent = true})
+vim.keymap.set('n', 'L', "$", {silent = true})
+vim.keymap.set('v', 'H', "^", {silent = true})
+vim.keymap.set('v', 'L', "$", {silent = true})
+
+-- better window navigation
+vim.keymap.set('n', '<C-h>', "<C-w>h", { silent = true})
+vim.keymap.set('n', '<C-j>', "<C-w>j", { silent = true})
+vim.keymap.set('n', '<C-k>', "<C-w>k", { silent = true})
+vim.keymap.set('n', '<C-l>', "<C-w>l", { silent = true})
+
+vim.keymap.set('t', '<C-h>', "<C-\\><C-N><C-w>h", { silent = true})
+vim.keymap.set('t', '<C-j>', "<C-\\><C-N><C-w>j", { silent = true})
+vim.keymap.set('t', '<C-k>', "<C-\\><C-N><C-w>k", { silent = true})
+vim.keymap.set('t', '<C-l>', "<C-\\><C-N><C-w>l", { silent = true})
+
+-- resize with arrows
+vim.keymap.set('n', '<C-Up>', ":resize -2<CR>", { silent = true})
+vim.keymap.set('n', '<C-Down>', ":resize +2<CR>", { silent = true})
+vim.keymap.set('n', '<C-Left>', ":vertical resize -2<CR>", { silent = true})
+vim.keymap.set('n', '<C-Right>', ":vertical resize +2<CR>", { silent = true})
+
+-- Move text
+vim.keymap.set('x', 'J', ":m '>+1<CR>gv-gv'", {silent = true})
+vim.keymap.set('x', 'K', ":m '<-2<CR>gv-gv'", {silent = true})
+
+-- Additional exit from insert mode
+vim.keymap.set('i', 'jk', "<Esc>", {silent = true})
+
+-- stay in intention mode
+vim.keymap.set('v', '<', "<gv", {silent = true})
+vim.keymap.set('v', '>', ">gv", {silent = true})
+
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -428,10 +471,10 @@ vim.defer_fn(function()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = '<c-space>',
-        node_incremental = '<c-space>',
+        init_selection = '<CR>',
+        node_incremental = '<CR>',
         scope_incremental = '<c-s>',
-        node_decremental = '<M-space>',
+        node_decremental = '<BS>',
       },
     },
     textobjects = {

@@ -31,6 +31,13 @@ based on kickstart.nvim
 - <kbd>[</kbd><kbd>d</kbd>  : Next diagnostic element
 - <kbd>]</kbd><kbd>d</kbd>  : Previous diagnostic element
 
+## 'mg979/vim-visual-multi
+- <kbd>Ctrl</kbd><kbd>n</kbd> : select word
+- <kbd>n</kbd>/<kbd>N</kbd> : select next/previous word
+- <kbd>[</kbd>/<kbd>]</kbd> : move cursor
+- <kbd>q</kbd> : skip  and take next
+- <kbd>Q</kbd> : remove current selectionand cursor
+
 ## voldikss/vim-floaterm
 - <kbd>Space</kbd><kbd>f</kbd><kbd>t</kbd> : new float terminal
 - <kbd>t</kbd> : toggle float terminal

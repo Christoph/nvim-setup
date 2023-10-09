@@ -31,7 +31,7 @@ based on kickstart.nvim
 - <kbd>[</kbd><kbd>d</kbd>  : Next diagnostic element
 - <kbd>]</kbd><kbd>d</kbd>  : Previous diagnostic element
 
-## 'mg979/vim-visual-multi
+## mg979/vim-visual-multi
 - <kbd>Ctrl</kbd><kbd>n</kbd> : select word
 - <kbd>n</kbd>/<kbd>N</kbd> : select next/previous word
 - <kbd>[</kbd>/<kbd>]</kbd> : move cursor

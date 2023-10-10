@@ -242,6 +242,7 @@ vim.keymap.set('n', '<C-,>', ":bprevious<CR>", {silent = true})
 -- ; for :
 vim.keymap.set('n', ';', ":", {silent = true})
 vim.keymap.set('n', 'n', "nzz", {silent = true})
+vim.keymap.set('n', '<S-n>', "<S-n>zz", {silent = true})
 
 -- start beginning
 vim.keymap.set('n', 'H', "^", {silent = true})
@@ -695,6 +696,9 @@ rt.setup({
 require('Comment').setup()
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
+
+-- Change sandwich keymaps to surround for compatibility with ideavim keymaps
+vim.cmd('source C:\\Users\\User\\AppData\\Local\\nvim-data\\lazy\\vim-sandwich\\macros\\sandwich\\keymap\\surround.vim')
 
 -- Vimspector options
 -- vim.cmd([[

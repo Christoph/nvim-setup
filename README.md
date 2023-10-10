@@ -104,14 +104,12 @@ Inside the explorer
 - visual mode + <kbd>g</kbd><kbd>c</kbd>  :    comment selected lines
 
 ## machakann/vim-sandwich
-(inner) is without brackets
-(outer) with brackets
-- <kbd>s</kbd><kbd>a</kbd><kbd>i</kbd><kbd>w</kbd>{element}  :  Surround (inner) (w)ord by element
-- <kbd>s</kbd><kbd>a</kbd><kbd>i</kbd><kbd>b</kbd>{element}  :  Surround (inner) (b)lock by element
-- <kbd>s</kbd><kbd>a</kbd><kbd>i</kbd><kbd>s</kbd>{element}  :  Surround (inner) (s)ection by element
-- <kbd>s</kbd><kbd>a</kbd><kbd>a</kbd><kbd>b</kbd>{element}  :  Surround (outer) (b)lock by element
-- <kbd>s</kbd><kbd>a</kbd><kbd>a</kbd><kbd>s</kbd>{element}  :  Surround (outer) (s)ection by element
-- <kbd>s</kbd><kbd>d</kbd><kbd>b</kbd>   : Remove first bracket in block
-- <kbd>s</kbd><kbd>d</kbd>{element}  : Remove first element brackets
-- <kbd>s</kbd><kbd>r</kbd><kbd>b</kbd>{element}  : Replace first bracket in block with element
-- <kbd>s</kbd><kbd>r</kbd>{bracket}{element}  : Replace bracket with element
+- <kbd>y</kbd><kbd>s</kbd><kbd>i</kbd><kbd>w</kbd>{element}  :  Surround (w)ord by element
+- <kbd>y</kbd><kbd>s</kbd><kbd>i</kbd><kbd>b</kbd>{element}  :  Surround (inner) (b)lock by element
+- <kbd>y</kbd><kbd>s</kbd><kbd>i</kbd><kbd>s</kbd>{element}  :  Surround (inner) (s)ection by element
+- <kbd>y</kbd><kbd>s</kbd><kbd>a</kbd><kbd>b</kbd>{element}  :  Surround (outer) (b)lock by element
+- <kbd>y</kbd><kbd>s</kbd><kbd>a</kbd><kbd>s</kbd>{element}  :  Surround (outer) (s)ection by element
+- <kbd>d</kbd><kbd>s</kbd><kbd>s</kbd>   : Remove first bracket in block
+- <kbd>d</kbd><kbd>s</kbd>{element}  : Remove first element brackets
+- <kbd>c</kbd><kbd>s</kbd><kbd>s</kbd>{element}  : Replace first bracket in block with element
+- <kbd>c</kbd><kbd>s</kbd>{bracket}{element}  : Replace bracket with element

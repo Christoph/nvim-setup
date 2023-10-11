@@ -1,0 +1,23 @@
+ Plug 'easymotion/vim-easymotion'
+ Plug 'tpope/vim-surround'
+ let mapleader=" "
+ set easymotion
+ set surround
+ map <Leader>j <Plug>(easymotion-bd-w)
+
+ nmap <Tab> <Action>(NextTab)
+ nmap <S-Tab> <Action>(PreviousTab)
+ nmap <C-d> <C-d>zz
+ nmap <C-u> <C-u>zz
+ nmap n nzz
+ nmap <S-n> <S-n>zz
+ nmap ; :
+ nmap H ^
+ nmap L $
+ vmap H ^
+ vmap L $
+ imap jk <Esc>
+ vmap J :m '>+1<CR>gv=gv
+ vmap K :m '<-2<CR>gv=gv
+ vmap < <gv
+ vmap > >gv

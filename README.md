@@ -94,7 +94,7 @@ Inside the explorer
 
 ## Rust
 - <kbd>Ctrl</kbd><kbd>Space</kbd>  :   Hover actions
-- <kbd>Space</kbd><kbd>a</kbd>  :  code action group
+- <kbd>Space</kbd><kbd>c</kbd><kbd>a</kbd>  :  code action group
 
 ## nvim-treesitter
 - <kbd>CR</kbd>  :   Select node (select more with each press)

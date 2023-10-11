@@ -5,6 +5,15 @@
  set surround
  map <Leader>j <Plug>(easymotion-bd-w)
 
+ set scrolloff=4
+ set sidescrolloff=5
+ set ignorecase
+ set smartcase
+ set incsearch
+ set showmatch
+
+ nnoremap j gj
+ nnoremap k gk
  nmap <Tab> <Action>(NextTab)
  nmap <S-Tab> <Action>(PreviousTab)
  nmap <C-d> <C-d>zz

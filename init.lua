@@ -154,8 +154,6 @@ require('lazy').setup({
       },
     },
   },
-  -- quick and easy floating terminal
-  'voldikss/vim-floaterm',
   -- file explorer
   {
     "nvim-tree/nvim-tree.lua",
@@ -344,12 +342,6 @@ vim.keymap.set('n', '<leader>tf', '<cmd>NvimTreeFindFile<CR>', { desc = 'Open cu
 
 -- hop
 vim.keymap.set('n', '<leader>j', '<cmd>HopPattern<CR>', { desc = 'Search for pattern' })
-
-
--- FloaTerm configuration
-vim.keymap.set('n', "<leader>ft", ":FloatermNew --name=myfloat --height=0.8 --width=0.7 <CR> ")
-vim.keymap.set('n', "t", ":FloatermToggle myfloat<CR>")
-vim.keymap.set('t', "<Esc>", "<C-\\><C-n>:q<CR>")
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`

@@ -72,6 +72,7 @@ Inside the explorer
 - <kbd>g</kbd><kbd>y</kbd> : copy absolute path
 - <kbd>P</kbd>  : Parent directory
 - <kbd>W</kbd>  : collapse
+- <kbd>a</kbd>  : new
 - <kbd>c</kbd>  : copy
 - <kbd>d</kbd>  : delete
 - <kbd>p</kbd>  : paste

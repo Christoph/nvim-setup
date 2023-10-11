@@ -38,10 +38,6 @@ based on kickstart.nvim
 - <kbd>q</kbd> : skip  and take next
 - <kbd>Q</kbd> : remove current selectionand cursor
 
-## voldikss/vim-floaterm
-- <kbd>Space</kbd><kbd>f</kbd><kbd>t</kbd> : new float terminal
-- <kbd>t</kbd> : toggle float terminal
-
 ## phaazon/hop.nvim
 - <kbd>Space</kbd><kbd>j</kbd>  :  Search for pattern
 

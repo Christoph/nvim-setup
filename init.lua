@@ -34,7 +34,7 @@ require('lazy').setup({
     dependencies = {
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
       'folke/neodev.nvim',
     },
   },
@@ -55,6 +55,7 @@ require('lazy').setup({
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp-signature-help',
+      'hrsh7th/cmp-vsnip',
     },
   },
   -- better rust support
@@ -69,18 +70,11 @@ require('lazy').setup({
     end,
   },
   -- manipulate brackets
-  { "machakann/vim-sandwich", lazy=false},
+  { "machakann/vim-sandwich",   lazy = false },
   -- Themes
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
+  { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',     opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -98,16 +92,16 @@ require('lazy').setup({
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
-        vim.keymap.set({'n', 'v'}, ']c', function()
+        vim.keymap.set({ 'n', 'v' }, ']c', function()
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to next hunk"})
-        vim.keymap.set({'n', 'v'}, '[c', function()
+        end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+        vim.keymap.set({ 'n', 'v' }, '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to previous hunk"})
+        end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
       end,
     },
   },
@@ -180,13 +174,14 @@ require('lazy').setup({
   },
   -- autoclose pairs
   {
-      'windwp/nvim-autopairs',
-      event = "InsertEnter",
-      opts = {} -- this is equalent to setup({}) function
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
   },
 }, {})
 
-vim.opt.completeopt = "noinsert,menuone,noselect"
+vim.opt.completeopt = "menuone,noselect"
+vim.opt.shortmess = vim.opt.shortmess + "c"
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.foldexpr = "nvim_treesitter#foldepr()"
@@ -230,51 +225,51 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Move up and down always centeres
-vim.keymap.set('n', '<C-d>', "<C-d>zz", {silent = true})
-vim.keymap.set('n', '<C-u>', "<C-u>zz", {silent = true})
+vim.keymap.set('n', '<C-d>', "<C-d>zz", { silent = true })
+vim.keymap.set('n', '<C-u>', "<C-u>zz", { silent = true })
 
 -- Move between buffers
-vim.keymap.set('n', '<C-.>', ":bnext<CR>", {silent = true})
-vim.keymap.set('n', '<C-,>', ":bprevious<CR>", {silent = true})
+vim.keymap.set('n', '<C-.>', ":bnext<CR>", { silent = true })
+vim.keymap.set('n', '<C-,>', ":bprevious<CR>", { silent = true })
 
 -- ; for :
-vim.keymap.set('n', ';', ":", {silent = true})
-vim.keymap.set('n', 'n', "nzz", {silent = true})
-vim.keymap.set('n', '<S-n>', "<S-n>zz", {silent = true})
+vim.keymap.set('n', ';', ":", { silent = true })
+vim.keymap.set('n', 'n', "nzz", { silent = true })
+vim.keymap.set('n', '<S-n>', "<S-n>zz", { silent = true })
 
 -- start beginning
-vim.keymap.set('n', 'H', "^", {silent = true})
-vim.keymap.set('n', 'L', "$", {silent = true})
-vim.keymap.set('v', 'H', "^", {silent = true})
-vim.keymap.set('v', 'L', "$", {silent = true})
+vim.keymap.set('n', 'H', "^", { silent = true })
+vim.keymap.set('n', 'L', "$", { silent = true })
+vim.keymap.set('v', 'H', "^", { silent = true })
+vim.keymap.set('v', 'L', "$", { silent = true })
 
 -- better window navigation
-vim.keymap.set('n', '<C-h>', "<C-w>h", { silent = true})
-vim.keymap.set('n', '<C-j>', "<C-w>j", { silent = true})
-vim.keymap.set('n', '<C-k>', "<C-w>k", { silent = true})
-vim.keymap.set('n', '<C-l>', "<C-w>l", { silent = true})
+vim.keymap.set('n', '<C-h>', "<C-w>h", { silent = true })
+vim.keymap.set('n', '<C-j>', "<C-w>j", { silent = true })
+vim.keymap.set('n', '<C-k>', "<C-w>k", { silent = true })
+vim.keymap.set('n', '<C-l>', "<C-w>l", { silent = true })
 
-vim.keymap.set('t', '<C-h>', "<C-\\><C-N><C-w>h", { silent = true})
-vim.keymap.set('t', '<C-j>', "<C-\\><C-N><C-w>j", { silent = true})
-vim.keymap.set('t', '<C-k>', "<C-\\><C-N><C-w>k", { silent = true})
-vim.keymap.set('t', '<C-l>', "<C-\\><C-N><C-w>l", { silent = true})
+vim.keymap.set('t', '<C-h>', "<C-\\><C-N><C-w>h", { silent = true })
+vim.keymap.set('t', '<C-j>', "<C-\\><C-N><C-w>j", { silent = true })
+vim.keymap.set('t', '<C-k>', "<C-\\><C-N><C-w>k", { silent = true })
+vim.keymap.set('t', '<C-l>', "<C-\\><C-N><C-w>l", { silent = true })
 
 -- resize with arrows
-vim.keymap.set('n', '<C-Up>', ":resize -2<CR>", { silent = true})
-vim.keymap.set('n', '<C-Down>', ":resize +2<CR>", { silent = true})
-vim.keymap.set('n', '<C-Left>', ":vertical resize -2<CR>", { silent = true})
-vim.keymap.set('n', '<C-Right>', ":vertical resize +2<CR>", { silent = true})
+vim.keymap.set('n', '<C-Up>', ":resize -2<CR>", { silent = true })
+vim.keymap.set('n', '<C-Down>', ":resize +2<CR>", { silent = true })
+vim.keymap.set('n', '<C-Left>', ":vertical resize -2<CR>", { silent = true })
+vim.keymap.set('n', '<C-Right>', ":vertical resize +2<CR>", { silent = true })
 
 -- Move text
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { silent = true})
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", {silent = true})
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Additional exit from insert mode
-vim.keymap.set('i', 'jk', "<Esc>", {silent = true})
+vim.keymap.set('i', 'jk', "<Esc>", { silent = true })
 
 -- stay in intention mode
-vim.keymap.set('v', '<', "<gv", {silent = true})
-vim.keymap.set('v', '>', ">gv", {silent = true})
+vim.keymap.set('v', '<', "<gv", { silent = true })
+vim.keymap.set('v', '>', ">gv", { silent = true })
 
 -- tab movement
 vim.keymap.set('n', '<Tab>', 'gt')
@@ -294,21 +289,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Trouble
 local trouble = require("trouble.providers.telescope")
 vim.keymap.set("n", "<leader>xx", function() require("trouble").open() end, { desc = 'Toggle window' })
-vim.keymap.set("n", "<leader>xw", function() require("trouble").open("workspace_diagnostics") end, { desc = 'Open Workspace Diagnositics' })
-vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_diagnostics") end, { desc = 'Open Document Diagnositics' })
+vim.keymap.set("n", "<leader>xw", function() require("trouble").open("workspace_diagnostics") end,
+  { desc = 'Open Workspace Diagnositics' })
+vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_diagnostics") end,
+  { desc = 'Open Document Diagnositics' })
 vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end, { desc = 'Open Quick Fixes' })
 vim.keymap.set("n", "gR", function() require("trouble").open("lsp_references") end, { desc = 'Open References' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
+  file_ignore_patterns = {
+    "node_modules",
+    "dist"
+  },
   defaults = {
     mappings = {
       n = { ["<c-t>"] = trouble.open_with_trouble },
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
-        ["<c-t>"] = trouble.open_with_trouble 
+        ["<c-t>"] = trouble.open_with_trouble
       },
     },
   },
@@ -350,17 +351,17 @@ vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { 'c', 'python', 'cpp', 'go', 'lua', 'python', 'rust', 'toml', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
-  
+
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = true,
-  
+
     highlight = { enable = true },
     indent = { enable = true },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  },
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = nil,
+    },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -484,9 +485,9 @@ require('which-key').register({
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
+  pyright = {},
+  rust_analyzer = {},
+  tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
@@ -565,113 +566,33 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp', keyword_length = 2 },
-    { name = 'luasnip' },
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
     { name = 'path' },
+    { name = 'buffer' },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'buffer', keyword_length = 2 }, 
+    { name = 'luasnip' },
   },
   window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   formatting = {
-      fields = {'menu', 'abbr', 'kind'},
-      format = function(entry, item)
-          local menu_icon ={
-              nvim_lsp = 'λ',
-              vsnip = '⋗',
-              buffer = 'Ω',
-              path = '🖫',
-          }
-          item.menu = menu_icon[entry.source.name]
-          return item
-      end,
+    fields = { 'menu', 'abbr', 'kind' },
+    format = function(entry, item)
+      local menu_icon = {
+        nvim_lsp = 'λ',
+        vsnip = '⋗',
+        buffer = 'Ω',
+        path = '🖫',
+      }
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
   },
 }
 
 require("hop").setup({})
-
-require("tokyonight").setup({
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
-  style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-  light_style = "day", -- The theme is used when the background is set to light
-  transparent = false, -- Enable this to disable setting the background color
-  terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
-  styles = {
-    -- Style to be applied to different syntax groups
-    -- Value is any valid attr-list value for `:help nvim_set_hl`
-    comments = { italic = true },
-    keywords = { italic = true },
-    functions = {},
-    variables = {},
-    -- Background styles. Can be "dark", "transparent" or "normal"
-    sidebars = "dark", -- style for sidebars, see below
-    floats = "dark", -- style for floating windows
-  },
-  sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-  day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-  hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-  dim_inactive = false, -- dims inactive windows
-  lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
-
-  --- You can override specific color groups to use other groups or a hex color
-  --- function will be called with a ColorScheme table
-  ---@param colors ColorScheme
-  on_colors = function(colors)
-    colors.hint = colors.orange
-  end,
-  --- You can override specific highlights to use other groups or a hex color
-  --- function will be called with a Highlights and ColorScheme table
-  ---@param highlights Highlights
-  ---@param colors ColorScheme
-  on_highlights = function(highlights, colors) end,
-})
-
-require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    background = { -- :h background
-        light = "latte",
-        dark = "mocha",
-    },
-    transparent_background = false, -- disables setting the background color.
-    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
-    dim_inactive = {
-        enabled = false, -- dims the background color of inactive window
-        shade = "dark",
-        percentage = 0.15, -- percentage of the shade to apply to the inactive window
-    },
-    no_italic = false, -- Force no italic
-    no_bold = false, -- Force no bold
-    no_underline = false, -- Force no underline
-    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-        comments = { "italic" }, -- Change the style of comments
-        conditionals = { "italic" },
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
-    },
-    color_overrides = {},
-    custom_highlights = {},
-    integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        treesitter = true,
-        notify = false,
-        mini = false,
-        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-    },
-})
 
 local rt = require("rust-tools")
 rt.setup({
@@ -683,14 +604,61 @@ rt.setup({
       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
     end,
   },
+  settings = {
+    -- to enable rust-analyzer settings visit:
+    -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+    ["rust-analyzer"] = {
+      -- enable clippy on save
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
+  },
+  tools = {
+    runnables = {
+      use_telescope = true,
+    },
+    inlay_hints = {
+      auto = true,
+      show_parameter_hints = false,
+      parameter_hints_prefix = "",
+      other_hints_prefix = "",
+    },
+  },
+  hover_actions = {
+
+    -- the border that is used for the hover window
+    -- see vim.api.nvim_open_win()
+    border = {
+      { "╭", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "╮", "FloatBorder" },
+      { "│", "FloatBorder" },
+      { "╯", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "╰", "FloatBorder" },
+      { "│", "FloatBorder" },
+    },
+
+    -- Maximal width of the hover window. Nil means no max.
+    max_width = nil,
+
+    -- Maximal height of the hover window. Nil means no max.
+    max_height = nil,
+
+    -- whether the hover action window gets automatically focused
+    -- default: false
+    auto_focus = false,
+  },
 })
 
 require('Comment').setup()
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
 
--- Change sandwich keymaps to surround for compatibility with ideavim keymaps
-vim.cmd('source C:\\Users\\User\\AppData\\Local\\nvim-data\\lazy\\vim-sandwich\\macros\\sandwich\\keymap\\surround.vim')
+
+
 
 -- Vimspector options
 -- vim.cmd([[

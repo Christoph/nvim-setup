@@ -49,9 +49,7 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
-      'rafamadriz/friendly-snippets',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp-signature-help',
@@ -59,7 +57,11 @@ require('lazy').setup({
     },
   },
   -- better rust support
-  'simrat39/rust-tools.nvim',
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    ft = { 'rust' },
+  },
   -- better cargo support
   {
     'saecki/crates.nvim',
@@ -134,13 +136,8 @@ require('lazy').setup({
     tag = '0.1.3',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-      -- Only load if `make` is available. Make sure you have the system
-      -- requirements installed.
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
         build = 'make',
         cond = function()
           return vim.fn.executable 'make' == 1
@@ -163,14 +160,21 @@ require('lazy').setup({
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
   },
   -- jump between words
   {
     'smoka7/hop.nvim',
-    version = '2.3.2',
+    version = '2.5.1',
+    config = function()
+      require("hop").setup({
+        multi_windows = true,
+        case_insensitive = true
+      })
+
+      vim.cmd("highlight HopNextKey guifg=#ff9900")
+      vim.cmd("highlight HopNextKey1 guifg=#ff9900")
+      vim.cmd("highlight HopNextKey2 guifg=#ff9900")
+    end,
   },
   -- autoclose pairs
   {
@@ -189,6 +193,7 @@ vim.opt.foldmethod = "manual"
 vim.opt.hidden = true
 vim.opt.inccommand = "split"
 vim.opt.relativenumber = true
+vim.opt.scrolloff = 7
 vim.opt.shiftwidth = 2
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -200,6 +205,7 @@ vim.opt.timeoutlen = 250
 vim.opt.wildmenu = true
 vim.opt.wrap = true
 vim.o.hlsearch = false
+vim.o.encoding = 'utf8'
 vim.wo.number = true
 vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
@@ -216,6 +222,7 @@ vim.o.termguicolors = true
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'p', 'P', { silent = true })
 
 -- Save shortcut
 vim.keymap.set('n', '<C-s>', ':wa<CR>', { silent = true })
@@ -295,23 +302,35 @@ vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_d
   { desc = 'Open Document Diagnositics' })
 vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end, { desc = 'Open Quick Fixes' })
 vim.keymap.set("n", "gR", function() require("trouble").open("lsp_references") end, { desc = 'Open References' })
+vim.keymap.set("n", "gr", function() require("trouble").open("lsp_references") end, { desc = 'Open References' })
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
-  file_ignore_patterns = {
-    "node_modules",
-    "dist"
-  },
   defaults = {
+    file_ignore_patterns = {
+      "node_modules",
+      "dist",
+      "target",
+      "models/"
+    },
     mappings = {
       n = { ["<c-t>"] = trouble.open_with_trouble },
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
-        ["<c-t>"] = trouble.open_with_trouble
+        ["<C-t>"] = trouble.open_with_trouble
       },
     },
+    extensions = {
+      fzf = {
+        fuzzy = true,                    -- false will only do exact matching
+        override_generic_sorter = true,  -- override the generic sorter
+        override_file_sorter = true,     -- override the file sorter
+        case_mode = "ignore_case",        -- or "ignore_case" or "respect_case"
+                                         -- the default case_mode is "smart_case"
+      }
+    }
   },
 }
 
@@ -344,18 +363,12 @@ vim.keymap.set('n', '<leader>tf', '<cmd>NvimTreeFindFile<CR>', { desc = 'Open cu
 -- hop
 vim.keymap.set('n', '<leader>j', '<cmd>HopPattern<CR>', { desc = 'Search for pattern' })
 
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
--- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
+-- treesitter
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
-    -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'python', 'cpp', 'go', 'lua', 'python', 'rust', 'toml', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
-
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = true,
 
-    highlight = { enable = true },
+    -- highlight = { enable = true },
     indent = { enable = true },
     rainbow = {
       enable = true,
@@ -371,97 +384,8 @@ vim.defer_fn(function()
         node_decremental = '<BS>',
       },
     },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['aa'] = '@parameter.outer',
-          ['ia'] = '@parameter.inner',
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
-        },
-        goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
-        },
-        goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
-        },
-      },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
-    },
   }
 end, 0)
-
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
--- [[ Configure LSP ]]
---  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
-
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
 
 -- document existing key chains
 require('which-key').register({
@@ -474,54 +398,53 @@ require('which-key').register({
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
 })
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
---
---  If you want to override the default filetypes that your language server will attach to you can
---  define the property 'filetypes' to the map in question.
-local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  pyright = {},
-  rust_analyzer = {},
-  tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-}
-
--- Setup neovim lua configuration
 require('neodev').setup()
+  require('mason-lspconfig').setup_handlers {
+    ['rust_analyzer'] = function() end,
+  }
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- Setup language servers.
+local lspconfig = require('lspconfig')
+lspconfig.pyright.setup {}
+lspconfig.tsserver.setup {}
 
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
+-- Global mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end
-}
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<space>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
@@ -530,11 +453,72 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+-- Custom comparator
+local lspkind_comparator = function(conf)
+  local lsp_types = require('cmp.types').lsp
+  return function(entry1, entry2)
+    if entry1.source.name ~= 'nvim_lsp' then
+      if entry2.source.name == 'nvim_lsp' then
+        return false
+      else
+        return nil
+      end
+    end
+    local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
+    local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+
+    local priority1 = conf.kind_priority[kind1] or 0
+    local priority2 = conf.kind_priority[kind2] or 0
+    if priority1 == priority2 then
+      return nil
+    end
+    return priority2 < priority1
+  end
+end
+
+local label_comparator = function(entry1, entry2)
+  return entry1.completion_item.label < entry2.completion_item.label
+end
+
 cmp.setup {
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
+  },
+  sorting = {
+      comparators = {
+        lspkind_comparator({
+          kind_priority = {
+            Field = 12,
+            Property = 12,
+            EnumMember = 11,
+            Function = 11,
+            Struct = 10,
+            Constant = 10,
+            Enum = 10,
+            Event = 10,
+            Method = 10,
+            Operator = 9,
+            Reference = 9,
+            Variable = 9,
+            File = 8,
+            Folder = 8,
+            Class = 5,
+            Color = 5,
+            Module = 5,
+            Keyword = 2,
+            Constructor = 1,
+            Interface = 1,
+            Snippet = 0,
+            Text = 1,
+            TypeParameter = 1,
+            Unit = 1,
+            Value = 1,
+          },
+        }),
+        label_comparator,
+      },
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -592,90 +576,8 @@ cmp.setup {
   },
 }
 
-require("hop").setup({})
-
-local rt = require("rust-tools")
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-  settings = {
-    -- to enable rust-analyzer settings visit:
-    -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-    ["rust-analyzer"] = {
-      -- enable clippy on save
-      checkOnSave = {
-        command = "clippy",
-      },
-    },
-  },
-  tools = {
-    runnables = {
-      use_telescope = true,
-    },
-    inlay_hints = {
-      auto = true,
-      show_parameter_hints = false,
-      parameter_hints_prefix = "",
-      other_hints_prefix = "",
-    },
-  },
-  hover_actions = {
-
-    -- the border that is used for the hover window
-    -- see vim.api.nvim_open_win()
-    border = {
-      { "╭", "FloatBorder" },
-      { "─", "FloatBorder" },
-      { "╮", "FloatBorder" },
-      { "│", "FloatBorder" },
-      { "╯", "FloatBorder" },
-      { "─", "FloatBorder" },
-      { "╰", "FloatBorder" },
-      { "│", "FloatBorder" },
-    },
-
-    -- Maximal width of the hover window. Nil means no max.
-    max_width = nil,
-
-    -- Maximal height of the hover window. Nil means no max.
-    max_height = nil,
-
-    -- whether the hover action window gets automatically focused
-    -- default: false
-    auto_focus = false,
-  },
-})
-
 require('Comment').setup()
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
 vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
 
-
-
-
--- Vimspector options
--- vim.cmd([[
--- let g:vimspector_sidebar_width = 85
--- let g:vimspector_bottombar_height = 15
--- let g:vimspector_terminal_maxwidth = 70
--- ]])
--- vim.cmd([[
--- nmap <F9> <cmd>call vimspector#Launch()<cr>
--- nmap <F5> <cmd>call vimspector#StepOver()<cr>
--- nmap <F8> <cmd>call vimspector#Reset()<cr>
--- nmap <F11> <cmd>call vimspector#StepOver()<cr>")
--- nmap <F12> <cmd>call vimspector#StepOut()<cr>")
--- nmap <F10> <cmd>call vimspector#StepInto()<cr>")
--- ]])
---
-
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et

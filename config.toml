@@ -33,8 +33,11 @@ esc = ["collapse_selection", "keep_primary_selection"]
 j = "move_line_down"
 k = "move_line_up"
 
-d = ["yank_main_selection_to_clipboard", "delete_selection"]
-y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
+d = ["yank", "delete_selection"]
+y = ["yank", "normal_mode", "flip_selections", "collapse_selection"]
+Y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
+p = ["paste_after", "flip_selections", "collapse_selection"]
+P = ["paste_before", "flip_selections", "collapse_selection"]
 
 [keys.insert]
 "esc" = ["collapse_selection", "normal_mode"]
@@ -46,14 +49,13 @@ C-k = "expand_selection"
 S-h = "goto_first_nonwhitespace"
 S-l = "goto_line_end"
 
-i = "select_textobject_inner"
-a = "select_textobject_around"
-
 k = ["extend_line_up", "extend_to_line_bounds"]
 j = ["extend_line_down", "extend_to_line_bounds"]
 
-d = ["yank_main_selection_to_clipboard", "delete_selection"]
-y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
-p = "replace_selections_with_clipboard"
+d = ["yank", "delete_selection"]
+y = ["yank", "normal_mode", "flip_selections", "collapse_selection"]
+Y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
+p = ["paste_after", "flip_selections", "collapse_selection"]
+P = ["paste_before", "flip_selections", "collapse_selection"]
 
 esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]

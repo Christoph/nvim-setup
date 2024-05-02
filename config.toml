@@ -5,6 +5,7 @@ true-color = true
 
 [editor.cursor-shape]
 insert = "bar"
+select = "underline"
 
 [keys.normal]
 S-h = "goto_first_nonwhitespace" 

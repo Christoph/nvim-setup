@@ -1,11 +1,32 @@
 theme = "gruvbox"
 
 [editor]
+scroll-lines = 1
+cursorline = true
+auto-save = false
+completion-trigger-len = 1
 true-color = true
+color-modes = true
+auto-pairs = true
+idle-timeout = 50
 
 [editor.cursor-shape]
 insert = "bar"
+normal = "block"
 select = "underline"
+
+[editor.indent-guides]
+render = true
+character = "▏"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-type", "total-line-numbers", "file-encoding"]
+center = []
+right = ["selections", "primary-selection-length", "position", "position-percentage", "spacer", "diagnostics", "workspace-diagnostics", "version-control"]
 
 [keys.normal]
 S-h = "goto_first_nonwhitespace" 
@@ -19,8 +40,7 @@ C-k = "expand_selection"
 C-l = "select_next_sibling"
 
 V = ["select_mode", "extend_to_line_bounds"]
-C = ["extend_to_line_bounds", "yank_main_selection_to_clipboard", "delete_selection", "insert_mode"]
-D = ["extend_to_line_bounds", "yank_main_selection_to_clipboard", "delete_selection"]
+D = ["extend_to_line_end", "yank_main_selection_to_clipboard", "delete_selection"]
 
 i = ["insert_mode", "collapse_selection"]
 a = ["append_mode", "collapse_selection"]
@@ -34,11 +54,8 @@ esc = ["collapse_selection", "keep_primary_selection"]
 j = "move_line_down"
 k = "move_line_up"
 
-d = ["yank", "delete_selection"]
 y = ["yank", "normal_mode", "flip_selections", "collapse_selection"]
 Y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
-p = ["paste_after", "flip_selections", "collapse_selection"]
-P = ["paste_before", "flip_selections", "collapse_selection"]
 
 [keys.insert]
 "esc" = ["collapse_selection", "normal_mode"]
@@ -53,10 +70,7 @@ S-l = "goto_line_end"
 k = ["extend_line_up", "extend_to_line_bounds"]
 j = ["extend_line_down", "extend_to_line_bounds"]
 
-d = ["yank", "delete_selection"]
 y = ["yank", "normal_mode", "flip_selections", "collapse_selection"]
 Y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
-p = ["paste_after", "flip_selections", "collapse_selection"]
-P = ["paste_before", "flip_selections", "collapse_selection"]
 
 esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]

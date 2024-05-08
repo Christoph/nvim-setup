@@ -9,6 +9,7 @@ true-color = true
 color-modes = true
 auto-pairs = true
 idle-timeout = 50
+completion-timeout = 5
 preview-completion-insert = true
 bufferline = "always"
 
@@ -19,8 +20,10 @@ select = "underline"
 
 [editor.indent-guides]
 render = true
-# character = "▏"
 character = "⸽"
+
+[editor.soft-wrap]
+enable = true
 
 [editor.lsp]
 display-messages = true
@@ -29,7 +32,7 @@ display-inlay-hints = true
 [editor.statusline]
 left = ["mode", "spinner", "file-name", "total-line-numbers", "file-encoding"]
 center = ["version-control"]
-right = ["position", "spacer", "diagnostics", "workspace-diagnostics"]
+right = ["position", "spacer", "diagnostics"]
 
 [keys.normal]
 S-h = "goto_first_nonwhitespace" 

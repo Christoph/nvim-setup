@@ -1,79 +1,97 @@
-theme = "gruvbox"
+# PYTHON
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py","pyi","py3","pyw",".pythonstartup",".pythonrc"]
+shebangs = ["python"]
+roots = [".", "pyproject.toml", "pyrightconfig.json"]
+comment-token = "#"
+language-servers = ["pyright"]
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
 
-[editor]
-scroll-lines = 1
-cursorline = true
-auto-save = false
-completion-trigger-len = 1
-true-color = true
-color-modes = true
-auto-pairs = true
-idle-timeout = 50
-preview-completion-insert = true
-bufferline = "always"
+[language.formatter]
+command = "black"
+args = [
+  "-",
+  "--quiet",
+  "--line-length=88"
+]
 
-[editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
 
-[editor.indent-guides]
-render = true
-# character = "▏"
-character = "⸽"
 
-[editor.lsp]
-display-messages = true
-display-inlay-hints = true
+[language-server.pyright.config]
+reportMissingTypeStubs = false
+inlay-hints = true
 
-[editor.statusline]
-left = ["mode", "spinner", "file-name", "total-line-numbers", "file-encoding"]
-center = ["version-control"]
-right = ["position", "spacer", "diagnostics", "workspace-diagnostics"]
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+autoImportCompletions = true
 
-[keys.normal]
-S-h = "goto_first_nonwhitespace" 
-S-l = "goto_line_end"
+# JSON
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
 
-C-a = ":write-all"
+# CSS
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
 
-C-h = "select_prev_sibling"
-C-j = "shrink_selection"
-C-k = "expand_selection"
-C-l = "select_next_sibling"
+# ANGULAR
+[language-server.eslint]
+args = ["--stdio"] # should come by def with helix
+command = "vscode-eslint-language-server"
 
-V = ["select_mode", "extend_to_line_bounds"]
-D = ["extend_to_line_end", "yank_main_selection_to_clipboard", "delete_selection"]
+[language-server.eslint.config]
+format = true
+validate = "on"
+experimental = { useFlatConfig = false } 
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = "" 
+workingDirectory = { mode = "auto" }
 
-i = ["insert_mode", "collapse_selection"]
-a = ["append_mode", "collapse_selection"]
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
 
-u = ["undo", "collapse_selection"]
-esc = ["collapse_selection", "keep_primary_selection"]
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true
 
-"*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
-"#" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_prev"]
+[language-server.eslint.config.codeActionOnSave]
+enable = true
+mode = "fixAll"
 
-j = "move_line_down"
-k = "move_line_up"
+[[language]]
+name ="html"
+roots = ["angular.json"]
+language-servers = ["angular","vscode-html-language-server"]
 
-y = ["yank", "normal_mode", "flip_selections", "collapse_selection"]
-Y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
+[[language]]
+name = "typescript"
+roots = ["package-lock.json", "tsconfig.json"]
+language-servers = ["angular", "typescript-language-server", "eslint"]
+auto-format = true
 
-[keys.insert]
-"esc" = ["collapse_selection", "normal_mode"]
+[language-server]
+angular = {command = "ngserver", args = ["--stdio", "--tsProbeLocations", ".", "--ngProbeLocations", ".",]}
 
-[keys.select]
-C-j = "shrink_selection"
-C-k = "expand_selection"
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
 
-S-h = "goto_first_nonwhitespace"
-S-l = "goto_line_end"
-
-k = ["extend_line_up", "extend_to_line_bounds"]
-j = ["extend_line_down", "extend_to_line_bounds"]
-
-y = ["yank", "normal_mode", "flip_selections", "collapse_selection"]
-Y = ["yank_main_selection_to_clipboard", "normal_mode", "flip_selections", "collapse_selection"]
-
-esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
+[language-server.typescript-language-server.config.completions]
+completeFunctionCalls = true
